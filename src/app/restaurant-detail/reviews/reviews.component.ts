@@ -18,5 +18,4 @@ export class ReviewsComponent implements OnInit {
     this.reviews = this.restaurantsService.reviwesOfRestaurant(this.route.parent.snapshot.params['id'])
 
   }
-
 }
