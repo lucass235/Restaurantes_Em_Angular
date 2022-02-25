@@ -542,6 +542,22 @@
         }
       ],
       "id": 11
+    },
+    {
+      "name": "Lucas dos Santos Amorim Rego",
+      "email": "lucass235@gmail.com",
+      "emailConfirmation": "lucass235@gmail.com",
+      "address": "Rua cinco, número 58",
+      "optionalAddress": "",
+      "paymentOption": "REF",
+      "number": "9",
+      "orderItems": [
+        {
+          "quantity": 2,
+          "menuId": "donut"
+        }
+      ],
+      "id": 12
     }
   ]
 }

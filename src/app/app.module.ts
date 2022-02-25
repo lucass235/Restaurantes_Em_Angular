@@ -1,23 +1,24 @@
-import { SharedModule } from './shared/shared.module';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { RouterModule, PreloadAllModules } from '@angular/router';
-import {ROUTES} from './app.routes'
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { RestaurantsComponent } from './restaurants/restaurants.component';
-import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
-import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
-import { MenuComponent } from './restaurant-detail/menu/menu.component';
-import { CartComponent } from './restaurant-detail/cart/cart.component';
-import { MenuItemComponent } from './restaurant-detail/menu/menu-item/menu-item.component';
-import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
-import { ReviewsItemComponent } from './restaurant-detail/reviews/reviews-item/reviews-item.component';
-import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { NotFoundComponent } from './not-found/not-found.component'
+import { LOCALE_ID, NgModule } from "@angular/core";
+import { HttpModule } from "@angular/http";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { PreloadAllModules, RouterModule } from "@angular/router";
+import { AppComponent } from "./app.component";
+import { ROUTES } from "./app.routes";
+import { HeaderComponent } from "./header/header.component";
+import { HomeComponent } from "./home/home.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
+import { OrderSumaryComponent } from "./order-sumary/order-sumary.component";
+import { CartComponent } from "./restaurant-detail/cart/cart.component";
+import { MenuItemComponent } from "./restaurant-detail/menu/menu-item/menu-item.component";
+import { MenuComponent } from "./restaurant-detail/menu/menu.component";
+import { RestaurantDetailComponent } from "./restaurant-detail/restaurant-detail.component";
+import { ReviewsItemComponent } from "./restaurant-detail/reviews/reviews-item/reviews-item.component";
+import { ReviewsComponent } from "./restaurant-detail/reviews/reviews.component";
+import { RestaurantComponent } from "./restaurants/restaurant/restaurant.component";
+import { RestaurantsComponent } from "./restaurants/restaurants.component";
+import { SharedModule } from "./shared/shared.module";
+import { HashLocationStrategy, Location, LocationStrategy } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -38,11 +39,11 @@ import { NotFoundComponent } from './not-found/not-found.component'
   imports: [
     BrowserModule,
     SharedModule.forRoot(),
-    RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules}),
+    RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
     HttpModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
-  bootstrap: [AppComponent]
+  providers: [{ provide: LOCALE_ID, useValue: "pt-BR" }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
