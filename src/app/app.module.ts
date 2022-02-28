@@ -1,5 +1,5 @@
 import { LOCALE_ID, NgModule } from "@angular/core";
-import { HttpModule } from "@angular/http";
+import {HttpClientModule} from '@angular/common/http'
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PreloadAllModules, RouterModule } from "@angular/router";
@@ -19,6 +19,7 @@ import { RestaurantComponent } from "./restaurants/restaurant/restaurant.compone
 import { RestaurantsComponent } from "./restaurants/restaurants.component";
 import { SharedModule } from "./shared/shared.module";
 import { HashLocationStrategy, Location, LocationStrategy } from "@angular/common";
+import { LoginComponent } from './security/login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +36,13 @@ import { HashLocationStrategy, Location, LocationStrategy } from "@angular/commo
     ReviewsItemComponent,
     OrderSumaryComponent,
     NotFoundComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
-    HttpModule,
+    HttpClientModule,
     BrowserAnimationsModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pt-BR" }],

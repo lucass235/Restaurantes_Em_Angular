@@ -1,10 +1,11 @@
 import { Observable } from 'rxjs/Observable';
-import { Response } from "@angular/http";
+import { HttpErrorResponse } from "@angular/common/http";
 export class ErrorHandler {
   static handlerError(error: Response | any) {
     let errorMenssage: string;
-    if (error instanceof Response) {
-      errorMenssage = `Error ${error.status} ao acessar a URL ${error.url} - ${error.statusText}`
+    if (error instanceof HttpErrorResponse) {
+      const body = error.error;
+      errorMenssage = `${error.status}: ${error.url} - ${error.statusText || ''} ${body}`
     } else {
       errorMenssage = error.toString()
     }
