@@ -14,6 +14,7 @@ import { NgModel, FormControlName } from "@angular/forms";
 export class InputComponent implements OnInit {
   @Input() label: string;
   @Input() errorMessage: string;
+  @Input() showTip: boolean = true
   input: any;
   // contentChild faz com que outras classes enxerguem ele
   @ContentChild(NgModel) model: NgModel;
