@@ -1,15 +1,17 @@
-import { OrderService } from "./order.service";
-import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
-import { RadioOption } from "./../shared/radio/radio-option.model";
-import { CartItem } from "app/restaurant-detail/cart/cart-item.madel";
-import { Order, OrderItem } from "./order.model";
-import { Router } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
 import {
-  FormGroup,
-  FormBuilder,
-  Validators,
   AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
 } from "@angular/forms";
+import { Router } from "@angular/router";
+import { CartItem } from "app/restaurant-detail/cart/cart-item.madel";
+import {tap} from 'rxjs/operators'
+import { RadioOption } from "./../shared/radio/radio-option.model";
+import { Order, OrderItem } from "./order.model";
+import { OrderService } from "./order.service";
 
 @Component({
   selector: "mt-order",
@@ -17,6 +19,7 @@ import {
 })
 export class OrderComponent implements OnInit {
   orderForm: FormGroup;
+  orderId: string;
 
   emailPath =
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -38,12 +41,11 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.orderForm = this.formBuilder.group(
+    this.orderForm = new FormGroup(
       {
-        name: this.formBuilder.control("", [
-          Validators.required,
-          Validators.minLength(5),
-        ]), // validacao dos campos
+        name: new FormControl("", {
+          validators: [Validators.required, Validators.minLength(5)],
+        }), // validacao dos campos
         email: this.formBuilder.control("", [
           Validators.required,
           Validators.pattern(this.emailPath),
@@ -63,7 +65,7 @@ export class OrderComponent implements OnInit {
           Validators.pattern(this.numberPath),
         ]),
       },
-      { validator: OrderComponent.equalsTo }
+      { validators: [OrderComponent.equalsTo], updateOn: 'blur' }
     );
   }
 
@@ -75,9 +77,9 @@ export class OrderComponent implements OnInit {
     }
 
     if (email.value !== emailConfirmation.value) {
-      return {emailsNotMatch: true}
+      return { emailsNotMatch: true };
     }
-    return undefined
+    return undefined;
   }
 
   itemsValue(): number {
@@ -100,15 +102,23 @@ export class OrderComponent implements OnInit {
     this.orderService.remove(item);
   }
 
+  isOrderCompleted(): boolean {
+    return this.orderId !== undefined;
+  }
+
   checkOrder(order: Order) {
     order.orderItems = this.cartItems().map(
       (item: CartItem) => new OrderItem(item.quantity, item.menuItem.id)
     );
-    this.orderService.checkOrder(order).subscribe((orderId: string) => {
-      this.router.navigate(["/order-sumary"]);
-      console.log(`Compra concluida: ${orderId}`);
-      this.orderService.clear();
-    });
-    console.log(order);
+    this.orderService
+      .checkOrder(order)
+      .pipe(tap((orderId: string) => {
+        this.orderId = orderId;
+      }))
+      .subscribe((orderId: string) => {
+        this.router.navigate(["/order-sumary"]);
+        console.log(`Compra concluida: ${orderId}`);
+        this.orderService.clear();
+      });
   }
 }

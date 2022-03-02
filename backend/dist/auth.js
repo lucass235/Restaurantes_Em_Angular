@@ -13,7 +13,7 @@ var handleAuthentication = function (req, resp) {
         resp.json({ name: dbUser.name, email: dbUser.email, accessToken: token });
     }
     else {
-        resp.status(403).json({ message: "Dados inválido, mas como??" });
+        resp.status(403).json({ message: "Dados inválido." });
     }
 };
 exports.handleAuthentication = handleAuthentication;

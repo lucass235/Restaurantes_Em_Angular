@@ -1,10 +1,13 @@
-import { LOCALE_ID, NgModule } from "@angular/core";
+import { LOCALE_ID, NgModule, ErrorHandler} from "@angular/core";
 import {HttpClientModule} from '@angular/common/http'
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PreloadAllModules, RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
+
 import { ROUTES } from "./app.routes";
+import { ApplicationErrorHandler } from "./app.error-handler";
+
 import { HeaderComponent } from "./header/header.component";
 import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
@@ -18,8 +21,13 @@ import { ReviewsComponent } from "./restaurant-detail/reviews/reviews.component"
 import { RestaurantComponent } from "./restaurants/restaurant/restaurant.component";
 import { RestaurantsComponent } from "./restaurants/restaurants.component";
 import { SharedModule } from "./shared/shared.module";
-import { HashLocationStrategy, Location, LocationStrategy } from "@angular/common";
+import { HashLocationStrategy, Location, LocationStrategy, registerLocaleData } from "@angular/common";
 import { LoginComponent } from './security/login/login.component';
+import { UserDetailComponent } from './header/user-detail/user-detail.component';
+
+import locatePt from '@angular/common/locales/pt'
+
+registerLocaleData(locatePt, 'pt')
 
 @NgModule({
   declarations: [
@@ -37,6 +45,7 @@ import { LoginComponent } from './security/login/login.component';
     OrderSumaryComponent,
     NotFoundComponent,
     LoginComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +54,8 @@ import { LoginComponent } from './security/login/login.component';
     HttpClientModule,
     BrowserAnimationsModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "pt-BR" }],
+  providers: [{ provide: LOCALE_ID, useValue: "pt" },
+              { provide: ErrorHandler, useClass: ApplicationErrorHandler}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
