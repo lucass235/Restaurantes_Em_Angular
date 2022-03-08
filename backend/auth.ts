@@ -1,22 +1,28 @@
-import { User, users } from "./users";
 import { Request, Response } from "express";
+import * as jwt from "jsonwebtoken";
 import { apiConfig } from "./api-config";
+import { User, users } from "./users";
 
-import * as jwt from 'jsonwebtoken'
 export const handleAuthentication = (req: Request, resp: Response) => {
   const user: User = req.body;
 
-
-    // resp.json({message: 'ola'})
+  // resp.json({message: 'ola'})
 
   if (isValid(user)) {
-    const dbUser: User = users[user.email]
-    const token = jwt.sign({sub: dbUser.email, iss: 'meat-api'}, apiConfig.secret)
-    resp.json({name: dbUser.name, email: dbUser.email, accessToken: token})
+    const dbUser: User = users[user.email];
+    const token = jwt.sign(
+      { sub: dbUser.email, iss: "meat-api" },
+      apiConfig.secret
+    );
+    resp.json({
+      name: dbUser.name,
+      email: dbUser.email,
+      img: users.img,
+      accessToken: token,
+    });
   } else {
     resp.status(403).json({ message: "Dados inválido." });
   }
-
 };
 
 function isValid(user: User): boolean {

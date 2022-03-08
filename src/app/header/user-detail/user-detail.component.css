@@ -1,20 +1,37 @@
-.user-menu>span{ /**/
+.user-menu > span {
+  /**/
   position: relative;
   display: block;
   padding: 15px 15px;
   color: #fff;
 }
 
-.user-menu a{
-  color: #fff;
-  cursor: pointer
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
-@media (max-width: 991px){
+.text-white {
+  color: white;
+}
+
+.rounded {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  margin-right: 0.5rem;
+}
+
+.user-menu a {
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
   .navbar-custom-menu {
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 40px;
-    }
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 40px;
+  }
 }

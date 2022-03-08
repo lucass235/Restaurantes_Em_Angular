@@ -71,4 +71,8 @@ export class CartComponent implements OnInit {
   addItem(item: any) {
     this.cartService.addItem(item);
   }
+
+  cartEmpty() {
+    this.cartService.cartEmpty();
+  }
 }

@@ -1,3 +1,4 @@
+import { ContactsComponent } from './contacts/contacts.component';
 import { LoggedInGuard } from './security/loggedin.guard';
 import { LoginComponent } from './security/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -13,6 +14,7 @@ export const ROUTES: Routes = [
   {path: '', component: HomeComponent},
   {path: 'about', loadChildren: './about/about.module#AboutModule'},
   {path: 'restaurants', component: RestaurantsComponent},
+  {path: 'contacts', component: ContactsComponent},
   {path: 'restaurants/:id', component: RestaurantDetailComponent,
     children: [
       {path: '', redirectTo: 'menu', pathMatch: 'full'},

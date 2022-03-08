@@ -8,7 +8,7 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CartItem } from "app/restaurant-detail/cart/cart-item.madel";
-import {tap} from 'rxjs/operators'
+import { tap } from "rxjs/operators";
 import { RadioOption } from "./../shared/radio/radio-option.model";
 import { Order, OrderItem } from "./order.model";
 import { OrderService } from "./order.service";
@@ -26,10 +26,11 @@ export class OrderComponent implements OnInit {
 
   numberPath = /^[0-9]*$/;
 
-  paymentOptions: RadioOption[] = [
-    { label: "Dinheiro", value: "MON" },
-    { label: "Cartão de débito", value: "DEB" },
-    { label: "cartão refeição", value: "REF" },
+  optionsPay: RadioOption[] = [
+    { label: "Dinheiro", value: "MON", icon: "fa-solid fa-money-bill-1" },
+    { label: "Cartão de débito", value: "DEB", icon: "fa fa-credit-card" },
+    { label: "cartão refeição", value: "REF", icon: "fa fa-credit-card" },
+    { label: "Pix", value: "PIX", icon: "fa-brands fa-pix" },
   ];
 
   delivery: number = 8;
@@ -45,7 +46,7 @@ export class OrderComponent implements OnInit {
       {
         name: new FormControl("", {
           validators: [Validators.required, Validators.minLength(5)],
-        }), // validacao dos campos
+        }),
         email: this.formBuilder.control("", [
           Validators.required,
           Validators.pattern(this.emailPath),
@@ -65,7 +66,7 @@ export class OrderComponent implements OnInit {
           Validators.pattern(this.numberPath),
         ]),
       },
-      { validators: [OrderComponent.equalsTo], updateOn: 'blur' }
+      { validators: [OrderComponent.equalsTo], updateOn: "blur" }
     );
   }
 
@@ -112,13 +113,18 @@ export class OrderComponent implements OnInit {
     );
     this.orderService
       .checkOrder(order)
-      .pipe(tap((orderId: string) => {
-        this.orderId = orderId;
-      }))
+      .pipe(
+        tap((orderId: string) => {
+          this.orderId = orderId;
+        })
+      )
       .subscribe((orderId: string) => {
         this.router.navigate(["/order-sumary"]);
-        console.log(`Compra concluida: ${orderId}`);
         this.orderService.clear();
       });
+  }
+
+  setValue(value: string) {
+    this.orderForm.get("paymentOption").setValue(value);
   }
 }

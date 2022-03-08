@@ -46,4 +46,8 @@ constructor(private notificationService: NotificationService){}
     .map(item => item.valor())
     .reduce((prev, value) => prev+value, 0);
   };
+
+  cartEmpty() {
+      this.notificationService.notify('Seu carrinho esta vazio!')
+  }
 }

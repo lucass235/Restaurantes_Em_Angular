@@ -21,16 +21,32 @@
               "src/favicon.ico"
             ],
             "styles": [
-              {"input":"node_modules/admin-lte/bootstrap/css/bootstrap.min.css"},
-              {"input":"node_modules/admin-lte/dist/css/AdminLTE.min.css"},
-              {"input":"node_modules/admin-lte/dist/css/skins/skin-red.min.css"},
-              {"input":"node_modules/admin-lte/plugins/iCheck/flat/red.css"},
-              {"input":"src/styles.css"}
+              {
+                "input": "node_modules/admin-lte/bootstrap/css/bootstrap.min.css"
+              },
+              {
+                "input": "node_modules/admin-lte/dist/css/AdminLTE.min.css"
+              },
+              {
+                "input": "node_modules/admin-lte/dist/css/skins/skin-red.min.css"
+              },
+              {
+                "input": "node_modules/admin-lte/plugins/iCheck/flat/red.css"
+              },
+              {
+                "input": "src/styles.css"
+              }
             ],
             "scripts": [
-              {"input":"node_modules/jquery/dist/jquery.min.js"},
-              {"input":"node_modules/admin-lte/bootstrap/js/bootstrap.min.js"},
-              {"input":"node_modules/admin-lte/dist/js/app.min.js"}
+              {
+                "input": "node_modules/jquery/dist/jquery.min.js"
+              },
+              {
+                "input": "node_modules/admin-lte/bootstrap/js/bootstrap.min.js"
+              },
+              {
+                "input": "node_modules/admin-lte/dist/js/app.min.js"
+              }
             ]
           },
           "configurations": {
@@ -78,17 +94,35 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "styles": [
-              {"input":"node_modules/font-awesome/css/font-awesome.min.css"},
-              {"input":"node_modules/admin-lte/bootstrap/css/bootstrap.min.css"},
-              {"input":"node_modules/admin-lte/dist/css/AdminLTE.min.css"},
-              {"input":"node_modules/admin-lte/dist/css/skins/skin-red.min.css"},
-              {"input":"node_modules/admin-lte/plugins/iCheck/flat/red.css"},
-              {"input":"src/styles.css"}
+              {
+                "input": "node_modules/font-awesome/css/font-awesome.min.css"
+              },
+              {
+                "input": "node_modules/admin-lte/bootstrap/css/bootstrap.min.css"
+              },
+              {
+                "input": "node_modules/admin-lte/dist/css/AdminLTE.min.css"
+              },
+              {
+                "input": "node_modules/admin-lte/dist/css/skins/skin-red.min.css"
+              },
+              {
+                "input": "node_modules/admin-lte/plugins/iCheck/flat/red.css"
+              },
+              {
+                "input": "src/styles.css"
+              }
             ],
             "scripts": [
-              {"input":"node_modules/jquery/dist/jquery.min.js"},
-              {"input":"node_modules/admin-lte/bootstrap/js/bootstrap.min.js"},
-              {"input":"node_modules/admin-lte/dist/js/app.min.js"}
+              {
+                "input": "node_modules/jquery/dist/jquery.min.js"
+              },
+              {
+                "input": "node_modules/admin-lte/bootstrap/js/bootstrap.min.js"
+              },
+              {
+                "input": "node_modules/admin-lte/dist/js/app.min.js"
+              }
             ],
             "assets": [
               "src/assets",

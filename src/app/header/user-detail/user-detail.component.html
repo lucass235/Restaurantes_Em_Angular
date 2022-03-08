@@ -1,12 +1,18 @@
 <div class="navbar-custom-menu">
   <ul class="nav navbar-nav">
     <li class="user user-menu">
-      <span *ngIf="isLoggedIn(); else notLoggedIn">
-        Olá, {{user().name}} | <a (click)="logout()">Sair</a>
-      </span>
+      <div class="row" *ngIf="isLoggedIn(); else notLoggedIn">
+        <!--  -->
+        <img src="/assets/img/users/lucas.jpg" class="rounded mt-2 mx-2">
+        <!-- <img src="{{ user().img }}" class="rounded mt-2 mx-2"> -->
+        <span class="text-white">
+          Olá, {{user().name}} | <a (click)="logout()">Sair</a>
+        </span>
+      </div>
       <ng-template #notLoggedIn>
-
         <a (click)="login()">Entrar</a>
+
+
       </ng-template>
     </li>
   </ul>

@@ -1,6 +1,6 @@
-import { User } from "./../../security/login/user.model";
-import { LoginService } from "./../../security/login/login.service";
 import { Component, OnInit } from "@angular/core";
+import { LoginService } from "./../../security/login/login.service";
+import { User } from "./../../security/login/user.model";
 
 @Component({
   selector: "mt-user-detail",
@@ -21,10 +21,10 @@ export class UserDetailComponent implements OnInit {
   }
 
   login() {
-    this.loginService.handleLogin()
+    this.loginService.handleLogin();
   }
 
   logout() {
-    this.loginService.logout()
+    this.loginService.logout();
   }
 }

@@ -1,6 +1,13 @@
-import { RadioOption } from "./radio-option.model";
-import { Component, OnInit, Input, forwardRef } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  OnInit,
+  Output,
+} from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { RadioOption } from "./radio-option.model";
 
 @Component({
   selector: "mt-radio",
@@ -8,24 +15,24 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting:forwardRef(() => RadioComponent) ,
-      multi: true
-    }
-  ]
+      useExisting: forwardRef(() => RadioComponent),
+      multi: true,
+    },
+  ],
 })
 export class RadioComponent implements OnInit, ControlValueAccessor {
   @Input() options: RadioOption[];
-  value: any;
+  value: string;
+  @Output() emitter = new EventEmitter<string>();
   onChange: any;
 
   constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  setValue(value: any) {
+  setValue(value: string) {
     this.value = value;
-    this.onChange(this.value);
+    this.emitter.emit(this.value);
   }
 
   writeValue(obj: any): void {
@@ -40,5 +47,5 @@ export class RadioComponent implements OnInit, ControlValueAccessor {
 
   // @param isDisabled
 
-  setDisabledState?(isDisabled: boolean): void {};
+  setDisabledState?(isDisabled: boolean): void {}
 }

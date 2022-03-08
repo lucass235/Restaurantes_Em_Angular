@@ -1,0 +1,63 @@
+<section class="content-header">
+  <h1>Entre em contato conosco</h1>
+</section>
+
+<p class="lead">
+  Dúvidas, sugestões e outras informações? Podem entrar em contato conosco!!
+  atendemos de segunda a sexta-feira das 08:00 às 18:00
+</p>
+
+<section class="content">
+  <section class="invoice">
+
+    <!-- {{contactForm.valid | json }} {{contactForm.value | json}} -->
+    <form [formGroup]="contactForm" novalidate>
+      <div class="row">
+
+        <div class="col-sm-6 col-xs-12">
+          Nome
+          <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Name">
+            <input class="form-control" formControlName="name" autocomplete="on" placeholder="Digite seu nome">
+          </mt-input-container>
+        </div>
+
+        <div class="col-sm-6 col-xs-12">
+          E-mail
+          <mt-input-container errorMessage="Campo obrigatório" label="Email">
+            <input class="form-control" formControlName="email" autocomplete="on" placeholder="Digite seu e-mail">
+          </mt-input-container>
+        </div>
+
+        <div class="col-sm-6 col-xs-12">
+          Telefone
+          <mt-input-container errorMessage="Campo obrigatório e somete números" label="CellPhone">
+            <input class="form-control" formControlName="phone" autocomplete="on" placeholder="Digite seu telefone">
+          </mt-input-container>
+        </div>
+
+        <div class="col-sm-6 col-xs-12">
+          Titulo da Menssagem
+          <mt-input-container errorMessage="Campo obrigatório" label="TitleMessage">
+            <input class="form-control" formControlName="titleMessage" autocomplete="on" placeholder="Titulo">
+          </mt-input-container>
+        </div>
+
+        <div class="col-sm-6 col-xs-12">
+          Mensagem
+          <mt-input-container errorMessage="Campo obrigatório" label="Message">
+            <input class="form-control" formControlName="message" autocomplete="on" placeholder="Sua Mensagem aqui...">
+          </mt-input-container>
+        </div>
+
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-xs-12">
+        <button (click)="sendContact()" href="order-summary.html" class="btn btn-success pull-right" [disabled]="!contactForm.valid"><i
+            class="fa-solid fa-paper-plane"></i>
+          Enviar
+        </button>
+      </div>
+    </div>
+  </section>
+</section>
