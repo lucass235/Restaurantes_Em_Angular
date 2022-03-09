@@ -27,4 +27,14 @@ export class UserDetailComponent implements OnInit {
   logout() {
     this.loginService.logout();
   }
+
+  renderImg(name: string): string {
+    const imgLucas = "/assets/img/users/lucas.jpg";
+    const imgRhay = "/assets/img/users/rhay.jpg";
+    if (name === "Lucas dos Santos") {
+      return imgLucas;
+    } else {
+      return imgRhay;
+    }
+  }
 }
