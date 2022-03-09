@@ -11,7 +11,7 @@
     <div class="col-xs-12 search-bar" [@toggleSearch]="searchBarState">
       <form [formGroup]="searchForm">
         <div class="form-group">
-          <input type="text"  #iptSearch formControlName="searchControl" class="form-control" placeholder="O que você está procurando?">
+          <input type="text" #iptSearch formControlName="searchControl" class="form-control" placeholder="O que você está procurando?">
 
         </div>
       </form>
@@ -22,6 +22,11 @@
 <section class="content">
 
   <div class="row">
+    <p *ngIf="!isLoggedIn()">
+      <b> Faça o login para liberar todos os recursos! </b>
+    </p>
+
+
     <div *ngFor="let restaurant of restaurants" class="col-sm-6 col-xs-12">
 
       <mt-restaurant [restaurant]="restaurant"></mt-restaurant>

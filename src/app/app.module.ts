@@ -10,6 +10,7 @@ import { AppComponent } from "./app.component";
 import { ApplicationErrorHandler } from "./app.error-handler";
 import { ROUTES } from "./app.routes";
 import { ContactsComponent } from "./contacts/contacts.component";
+import { ContactsGuard } from "./contacts/contacts.guard";
 import { HeaderComponent } from "./header/header.component";
 import { UserDetailComponent } from "./header/user-detail/user-detail.component";
 import { HomeComponent } from "./home/home.component";
@@ -58,6 +59,7 @@ registerLocaleData(locatePt, "pt");
     { provide: LOCALE_ID, useValue: "pt" },
     { provide: ErrorHandler, useClass: ApplicationErrorHandler },
     ContactsService,
+    ContactsGuard,
   ],
 
   bootstrap: [AppComponent],

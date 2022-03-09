@@ -1,14 +1,22 @@
-import { Observable, from } from 'rxjs';
-import { animate } from "@angular/animations";
-import { transition } from "@angular/animations";
-import { style } from "@angular/animations";
-import { state } from "@angular/animations";
-import { trigger } from "@angular/animations";
-import { RestaurantsService } from "./restaurants.service";
-import { Restaurant } from "./restaurant/restaurant.model";
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from "@angular/animations";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { switchMap, tap, debounceTime, distinctUntilChanged, catchError } from 'rxjs/operators';
+import { from } from "rxjs";
+import {
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+} from "rxjs/operators";
+import { LoginService } from "./../security/login/login.service";
+import { Restaurant } from "./restaurant/restaurant.model";
+import { RestaurantsService } from "./restaurants.service";
 
 @Component({
   selector: "mt-restaurants",
@@ -43,7 +51,8 @@ export class RestaurantsComponent implements OnInit {
 
   constructor(
     private restaurantsService: RestaurantsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
@@ -53,14 +62,16 @@ export class RestaurantsComponent implements OnInit {
     });
 
     this.searchControl.valueChanges
-    .pipe(
-      debounceTime(500),
-      distinctUntilChanged(),
-      switchMap(searchTerm =>
-        this.restaurantsService
-        .restaurants(searchTerm)
-        .pipe(catchError(error => from([]))))
-    ).subscribe((restaurants) => (this.restaurants = restaurants))
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        switchMap((searchTerm) =>
+          this.restaurantsService
+            .restaurants(searchTerm)
+            .pipe(catchError((error) => from([])))
+        )
+      )
+      .subscribe((restaurants) => (this.restaurants = restaurants));
 
     this.restaurantsService
       .restaurants()
@@ -70,5 +81,9 @@ export class RestaurantsComponent implements OnInit {
   toggleSearch() {
     this.searchBarState =
       this.searchBarState === "hidden" ? "visible" : "hidden";
+  }
+
+  isLoggedIn(): boolean {
+    return this.loginService.isLoggedIn();
   }
 }
