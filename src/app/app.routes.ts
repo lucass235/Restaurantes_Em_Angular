@@ -1,6 +1,5 @@
 import { Routes } from "@angular/router";
 import { ContactsComponent } from "./contacts/contacts.component";
-import { ContactsGuard } from "./contacts/contacts.guard";
 import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { OrderSumaryComponent } from "./order-sumary/order-sumary.component";
@@ -21,8 +20,8 @@ export const ROUTES: Routes = [
   {
     path: "contacts",
     component: ContactsComponent,
-    canActivate: [ContactsGuard],
-    canDeactivate: [ContactsGuard],
+    // canActivate: [ContactsGuard],
+    // canDeactivate: [ContactsGuard],
   },
   {
     path: "restaurants/:id",
